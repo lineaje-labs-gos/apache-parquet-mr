@@ -1,40 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>33</version>
   </parent>
-
   <groupId>org.apache.parquet</groupId>
   <artifactId>parquet</artifactId>
-  <version>1.15.1</version>
+  <version>1.15.1-lineaje-01</version>
   <packaging>pom</packaging>
-
   <name>Apache Parquet Java</name>
   <url>https://parquet.apache.org</url>
   <description>Parquet is a columnar storage format that supports nested data. This provides the java implementation.</description>
-
   <scm>
-    <connection>scm:git:git@github.com:apache/parquet-mr.git</connection>
-    <url>scm:git:git@github.com:apache/parquet-mr.git</url>
-    <developerConnection>scm:git:git@github.com:apache/parquet-mr.git</developerConnection>
-    <tag>apache-parquet-1.15.1-rc0</tag>
+    <connection>scm:git:apache-parquet-mr</connection>
+    <developerConnection>scm:git:apache-parquet-mr</developerConnection>
+    <url>apache-parquet-mr</url>
+    <tag>1.15.1-lineaje-01</tag>
   </scm>
-
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
       <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
-
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/apache/parquet-java/issues</url>
   </issueManagement>
-
   <mailingLists>
     <mailingList>
       <name>Dev Mailing List</name>
@@ -49,7 +42,6 @@
       <unsubscribe>commits-unsubscribe@parquet.apache.org</unsubscribe>
     </mailingList>
   </mailingLists>
-
   <repositories>
     <repository>
       <id>jitpack.io</id>
@@ -58,7 +50,6 @@
       <!-- needed for brotli-codec -->
     </repository>
   </repositories>
-
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -97,7 +88,6 @@
     <powermock.version>2.0.9</powermock.version>
     <net.openhft.version>0.26ea0</net.openhft.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-
     <!-- parquet-cli dependencies -->
     <opencsv.version>2.3</opencsv.version>
     <jcommander.version>1.82</jcommander.version>
@@ -106,14 +96,11 @@
     <commons-text.version>1.12.0</commons-text.version>
     <jsr305.version>3.0.2</jsr305.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
-
     <!-- properties for the profiles -->
     <surefire.argLine>-XX:MaxJavaStackTraceDepth=8</surefire.argLine>
     <surefire.logLevel>ERROR</surefire.logLevel>
-
     <!-- Resource intesive tests are enabled by default but disabled in the CI envrionment -->
     <enableResourceIntensiveTests>true</enableResourceIntensiveTests>
-
     <extraJavaTestArgs>
       -XX:+IgnoreUnrecognizedVMOptions
       --add-opens=java.base/java.lang=ALL-UNNAMED
@@ -131,7 +118,6 @@
       --add-opens=java.base/sun.util.calendar=ALL-UNNAMED
     </extraJavaTestArgs>
   </properties>
-
   <modules>
     <module>parquet-arrow</module>
     <module>parquet-avro</module>
@@ -150,7 +136,6 @@
     <module>parquet-thrift</module>
     <module>parquet-hadoop-bundle</module>
   </modules>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -165,7 +150,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -215,22 +199,25 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <reportSets>
-          <reportSet><!-- by default, id = "default" -->
-            <reports><!-- select non-aggregate reports -->
+          <reportSet>
+            <!-- by default, id = "default" -->
+            <reports>
+              <!-- select non-aggregate reports -->
               <report>javadoc</report>
               <report>test-javadoc</report>
             </reports>
           </reportSet>
-          <reportSet><!-- aggregate reportSet, to define in poms having modules -->
+          <reportSet>
+            <!-- aggregate reportSet, to define in poms having modules -->
             <id>aggregate</id>
-            <inherited>false</inherited><!-- don't run aggregate in child modules -->
+            <inherited>false</inherited>
+            <!-- don't run aggregate in child modules -->
             <reports>
               <report>aggregate</report>
             </reports>
@@ -267,7 +254,6 @@
       </plugin>
     </plugins>
   </reporting>
-
   <build>
     <pluginManagement>
       <plugins>
@@ -281,7 +267,6 @@
             </execution>
           </executions>
         </plugin>
-
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
           <executions>
@@ -398,7 +383,6 @@
           </execution>
         </executions-->
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
@@ -406,7 +390,6 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
@@ -422,7 +405,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -437,7 +419,6 @@
             <org.slf4j.simpleLogger.dateTimeFormat>YYYY-MM-dd HH:mm:ss</org.slf4j.simpleLogger.dateTimeFormat>
             <org.slf4j.simpleLogger.showThreadName>false</org.slf4j.simpleLogger.showThreadName>
             <org.slf4j.simpleLogger.showShortLogName>true</org.slf4j.simpleLogger.showShortLogName>
-
             <!-- Configure log level for Hadoop -->
             <hadoop.logLevel>${surefire.logLevel}</hadoop.logLevel>
             <enableResourceIntensiveTests>${enableResourceIntensiveTests}</enableResourceIntensiveTests>
@@ -447,7 +428,6 @@
           </excludes>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
@@ -462,7 +442,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
@@ -504,7 +483,6 @@
           </excludes>
         </configuration>
       </plugin>
-
       <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
@@ -515,13 +493,13 @@
             <excludes>
               <exclude>**/generated-sources/**</exclude>
             </excludes>
-            <toggleOffOn />
-            <removeUnusedImports />
-            <importOrder />
-            <trimTrailingWhitespace />
-            <palantirJavaFormat />
-            <endWithNewline />
-            <formatAnnotations />
+            <toggleOffOn/>
+            <removeUnusedImports/>
+            <importOrder/>
+            <trimTrailingWhitespace/>
+            <palantirJavaFormat/>
+            <endWithNewline/>
+            <formatAnnotations/>
             <indent>
               <tabs>true</tabs>
               <spacesPerTab>4</spacesPerTab>
@@ -541,7 +519,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>com.github.siom79.japicmp</groupId>
         <artifactId>japicmp-maven-plugin</artifactId>
@@ -561,7 +538,6 @@
               <excludeModule>parquet-cli</excludeModule>
               <excludeModule>parquet-tools-deprecated</excludeModule>
               <excludeModule>parquet-format-structures</excludeModule>
-
               <!-- Excluding the following modules because bundles do not contain any java classes while they still fail the
                 compatibility check because of missing dependencies -->
               <excludeModule>parquet-hadoop-bundle</excludeModule>
@@ -620,9 +596,28 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <gpgArguments>
+            <arg>--pinentry-mode</arg>
+            <arg>loopback</arg>
+          </gpgArguments>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
-
   <profiles>
     <profile>
       <id>jdk9+</id>
@@ -634,14 +629,12 @@
         <maven.compiler.release>8</maven.compiler.release>
       </properties>
     </profile>
-
     <profile>
       <id>hadoop2</id>
       <properties>
         <hadoop.version>2.7.3</hadoop.version>
       </properties>
     </profile>
-
     <!-- Profile for tests to have more output -->
     <profile>
       <id>verbose-test</id>
@@ -650,7 +643,6 @@
         <surefire.argLine>-XX:MaxJavaStackTraceDepth=1024</surefire.argLine>
       </properties>
     </profile>
-
     <profile>
       <id>vector-plugins</id>
       <modules>
@@ -659,4 +651,10 @@
       </modules>
     </profile>
   </profiles>
+  <contributors>
+    <contributor>
+      <name>Lineaje DepFixer</name>
+      <email>221268890+Lineaje-DepFixer@users.noreply.github.com</email>
+    </contributor>
+  </contributors>
 </project>
